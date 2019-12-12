@@ -10,20 +10,24 @@
 // EXAMPLE SOLUTION CODE:
 function Airplane(name) {
 	this.name = name;
-	this.isFlying = false;
-	this.takeOff = function() {
-		this.isFlying = true;
-	};
-	this.land = function() {
-		this.isFlying = false;
-	};
+  this.isFlying = false;
+
+  //can include the methods when initializing the constructor:
+	// this.takeOff = function() {
+	// 	this.isFlying = true;
+	// };
+	// this.land = function() {
+	// 	this.isFlying = false;
+  // };
 }
-// Airplane.prototype.takeOff = function () {
-//   this.isFlying = true;
-// };
-// Airplane.prototype.land = function () {
-//   this.isFlying = false;
-// };
+
+Airplane.prototype.takeOff = function () {
+  this.isFlying = true;
+};
+
+Airplane.prototype.land = function () {
+  this.isFlying = false;
+};
 
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -90,22 +94,14 @@ Car.prototype.fill = function(gallons) {
 }
 
 Car.prototype.drive = function(distance){
-  if(this.tank === 0){
-    return `I ran out of fuel at ${this.odometer} miles!`;
-  } else {
+  if(this.tank > 0){
   this.distance = distance;
   this.odometer += distance;
-  this.tank -= (distance / this.milesPerGallon);
+  this.tank -= (distance / this.milesPerGallon); 
+  } else {
+      return `I ran out of fuel at ${this.odometer} miles!`;
   }
 }
-
-//STRETCH
-// Car.prototype.drive = function(distance) {
-//   return (
-//     this.odometer + distance &&
-//     this.tank - (distance / this.milesPerGallon)
-//     );
-// }
 
 /*
   TASK 3
@@ -118,6 +114,7 @@ function Baby(name, age, favoriteToy) {
 	this.favoriteToy = favoriteToy;
 	Person.call(this, name, age);
 }
+
 Baby.prototype = Object.create(Person.prototype);
 
 Baby.prototype.play = function(favoriteToy) {
